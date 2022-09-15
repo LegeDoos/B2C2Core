@@ -10,11 +10,11 @@ using B2C2Core.Models;
 
 namespace B2C2Core.Controllers
 {
-    public class OrderController : Controller
+    public class OrdersController : Controller
     {
         private readonly AppDbContext _context;
 
-        public OrderController(AppDbContext context)
+        public OrdersController(AppDbContext context)
         {
             _context = context;
         }
@@ -56,7 +56,7 @@ namespace B2C2Core.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Klantnaam,Email,OrderDate,MyProperty")] Order order)
+        public async Task<IActionResult> Create([Bind("Id,Klantnaam")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace B2C2Core.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Klantnaam,Email,OrderDate,MyProperty")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Klantnaam")] Order order)
         {
             if (id != order.Id)
             {

@@ -18,7 +18,7 @@ namespace B2C2Core.Models
        // [DataType(DataType.DateTime)]
        // public DateTime OrderDate{ get; set; }
               
-        public List<OrderLine> OrderLines { get; set; }
+        public List<OrderLine>? OrderLines { get; set; }
 
     }
 }

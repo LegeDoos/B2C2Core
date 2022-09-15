@@ -56,7 +56,7 @@ namespace B2C2Core.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Klantnaam")] Order order)
+        public async Task<IActionResult> Create([Bind("Id,Klantnaam,FiliaalId")] Order order)
         {
             if (ModelState.IsValid)
             {

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace B2C2Core.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220915184041_InitialCreate")]
+    [Migration("20220915193148_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,23 @@ namespace B2C2Core.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("B2C2Core.Models.Filiaal", b =>
+                {
+                    b.Property<int>("FiliaalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FiliaalId"), 1L, 1);
+
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FiliaalId");
+
+                    b.ToTable("Filiaal");
+                });
+
             modelBuilder.Entity("B2C2Core.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -32,12 +49,17 @@ namespace B2C2Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("FiliaalId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Klantnaam")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FiliaalId");
 
                     b.ToTable("Orders");
                 });
@@ -65,6 +87,17 @@ namespace B2C2Core.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderLines");
+                });
+
+            modelBuilder.Entity("B2C2Core.Models.Order", b =>
+                {
+                    b.HasOne("B2C2Core.Models.Filiaal", "Filiaal")
+                        .WithMany()
+                        .HasForeignKey("FiliaalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Filiaal");
                 });
 
             modelBuilder.Entity("B2C2Core.Models.OrderLine", b =>

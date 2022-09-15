@@ -20,5 +20,8 @@ namespace B2C2Core.Models
               
         public List<OrderLine>? OrderLines { get; set; }
 
+
+        public int FiliaalId { get; set; }
+        public virtual Filiaal? Filiaal { get; set; }
     }
 }

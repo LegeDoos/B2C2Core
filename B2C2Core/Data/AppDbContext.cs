@@ -15,6 +15,7 @@ namespace B2C2Core.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<B2C2Core.Models.Filiaal> Filiaal { get; set; }
+        public DbSet<B2C2Core.Models.Klant> Klant { get; set; }
 
     }
 }

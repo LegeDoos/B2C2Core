@@ -12,12 +12,16 @@ namespace B2C2Core.Models
         [Required, DisplayName("Klant naam"), StringLength(100)]
         public string Klantnaam { get; set; }
 
-       // [DataType(DataType.EmailAddress)]
-       // public string Email { get; set; }
-       //
-       // [DataType(DataType.DateTime)]
-       // public DateTime OrderDate{ get; set; }
-              
+        public int? KlantId { get; set; }
+        public Klant? Klant { get; set; }
+
+
+        // [DataType(DataType.EmailAddress)]
+        // public string Email { get; set; }
+        //
+        // [DataType(DataType.DateTime)]
+        // public DateTime OrderDate{ get; set; }
+
         public List<OrderLine>? OrderLines { get; set; }
 
 
